@@ -15,7 +15,7 @@ pipeline {
         steps {
             git credentialsId: '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',
                 url: 'https://github.com/kong-sj/springboot-exmaple.git',
-                branch: 'master'
+                branch: 'main'
         }
         post {
                 failure {

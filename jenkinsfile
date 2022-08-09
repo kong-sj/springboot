@@ -14,7 +14,7 @@ pipeline {
     stage('Checkout Application Git Branch') {
         steps {
             git credentialsId: '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',
-                url: 'https://github.com/kong-sj/springboot-exmaple.git',
+                url: 'https://github.com/kong-sj/springboot.git',
                 branch: 'main'
         }
         post {

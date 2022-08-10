@@ -30,6 +30,7 @@ pipeline {
 
     stage('Maven Jar Build') {
             steps {
+                sh 'chmod +x mnvw'
                 sh './mvnw install'
             }
             post {

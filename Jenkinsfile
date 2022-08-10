@@ -61,7 +61,28 @@ pipeline {
     }
 
 
-
+    stage('Docker Image Push') {
+            steps {
+                withDockerRegistry {
+                      sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
+                      sh "docker push ${dockerHubRegistry}:latest"
+                      sleep 10 /* Wait uploading */
+                      
+                }
+            }
+            post {
+                    failure {
+                      echo 'Docker Image Push failure !'
+                      sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
+                      sh "docker rmi ${dockerHubRegistry}:latest"
+                    }
+                    success {
+                      echo 'Docker image push success !'
+                      sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
+                      sh "docker rmi ${dockerHubRegistry}:latest"
+                    }
+            }
+    }
     
 
   }

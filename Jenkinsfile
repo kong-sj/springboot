@@ -47,7 +47,6 @@ pipeline {
     stage('Docker Image Build') {
             steps {
                 sh "cp target/hello-spring-0.0.1-SNAPSHOT.jar ./"
-                sh "cp deploy/Dockerfile ./"
                 sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
                 sh "docker build . -t ${dockerHubRegistry}:latest"
             }

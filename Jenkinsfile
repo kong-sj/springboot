@@ -63,11 +63,11 @@ pipeline {
 
     stage('Docker Image Push') {
             steps {
-                  withDockerRegistry([ credentialsId: sjhong1994, url: "https://registry.hub.docker.com"]) { 
+                      sh echo tjdwns12* | docker login -u sjhong1994 --password-stdin 
                       sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
                       sh "docker push ${dockerHubRegistry}:latest"
                       sleep 10 /* Wait uploading */
-                  }
+                  
             }
             post {
                     failure {

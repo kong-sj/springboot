@@ -92,7 +92,7 @@ pipeline {
             sh "sed -i 's/k8s-manifest:.*\$/k8s-manifest:${currentBuild.number}/g' deployment.yaml"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
-            sshagent (credentials: ['jenkins-git']) {
+            sshagent (credentials: ['privatekey']) {
                 sh "git remote set-url main https://github.com/kong-sj/manifest.git"
                 sh "git push -u main main"
             }  

@@ -5,7 +5,7 @@ pipeline {
   }
 
   environment {
-      dockerHubRegistry = 'sjhong1994/k8s-lab'
+      dockerHubRegistry = 'sjhong1994/k8s-manifest'
       /* dockerHubRegistryCredential = '{Credential ID}'*/
   }
 

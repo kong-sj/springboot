@@ -85,17 +85,14 @@ pipeline {
     
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: 'jenkins',
+            git credentialsId: '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',
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
 
-            sh "sed -i 's/my-app:.*\$/my-app:${currentBuild.number}/g' deployment.yaml"
+            sh "sed -i 's/k8s-lab:.*\$/k8s-lab:${currentBuild.number}/g' deployment.yaml"
             sh "git add deployment.yaml"
-            sh "git commit -m '[UPDATE] my-app ${currentBuild.number} image versioning'"
-            sshagent(credentials: ['{k8s-manifest repository credential ID}']) {
-                sh "git remote set-url origin git@github.com:best-branch/k8s-manifest.git"
-                sh "git push -u origin master"
-             }
+            sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
+            sh "git push"
         }
         post {
                 failure {

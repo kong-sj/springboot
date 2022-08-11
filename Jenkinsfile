@@ -94,8 +94,9 @@ pipeline {
             sh "git config --global user.name kong-sj"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
-            sh "git remote add main https://github.com/kong-sj/manifest.git
-            sh "git push -u main main"
+            sshagent(credentials: ['private-key']) {
+                sh "git remote set-url main https://github.com/kong-sj/manifest.git
+                sh "git push -u main main"
         }
         post {
                 failure {

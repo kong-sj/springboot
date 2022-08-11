@@ -13,7 +13,7 @@ pipeline {
 
     stage('Checkout Application Git Branch') {
         steps {
-            git credentialsId: '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',
+            git credentialsId: 'kong-sj',
                 url: 'https://github.com/kong-sj/springboot.git',
                 branch: 'main'
         }
@@ -85,7 +85,7 @@ pipeline {
     
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: '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',
+            git credentialsId: 'privatekey',
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
 

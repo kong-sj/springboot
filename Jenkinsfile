@@ -89,9 +89,7 @@ pipeline {
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
 
-            sh "sed -i 's/k8s-lab:.*\$/k8s-lab:${currentBuild.number}/g' deployment.yaml"
-            sh "git config --global user.email sjhong1994@mz.co.kr"
-            sh "git config --global user.name kong-sj"
+            sh "sed -i 's/k8s-manifest:.*\$/k8s-manifest:${currentBuild.number}/g' deployment.yaml"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
             sshagent (credentials: ['jenkins-git']) {

@@ -85,7 +85,7 @@ pipeline {
     
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: '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',
+            git credentialsId: 'jenkins-git',
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
 

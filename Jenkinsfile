@@ -91,11 +91,11 @@ pipeline {
 
             sh "sed -i 's/k8s-lab:.*\$/k8s-lab:${currentBuild.number}/g' deployment.yaml"
             sh "git config --global user.email sjhong1994@mz.co.kr"
-            sh "git config --global user.name sjhong"
+            sh "git config --global user.name kong-sj"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
-            sh "git remote set-url origin https://kong-sj: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@github.com/kong-sj/manifest.git"
-            sh "git push -u origin main"
+            sh "git remote set-url kong-sj https://kong-sj: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@github.com/kong-sj/manifest.git"
+            sh "git push -u kong-sj main"
         }
         post {
                 failure {

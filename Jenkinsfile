@@ -93,8 +93,8 @@ pipeline {
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
             sshagent (credentials: ['privatekey']) {
-                sh "git remote set-url main https://github.com/kong-sj/manifest.git"
-                sh "git push -u main main"
+                sh "git remote set-url origin https://github.com/kong-sj/manifest.git"
+                sh "git push origin main"
             }  
         }
         post {

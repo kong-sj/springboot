@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk8
+FROM adoptopenjdk/openjdk11
 
 #ARG HOST_JAR_FILE_PATH=./hello-spring-0.0.1-SNAPSHOT.jar # Jar 경로 환경변수 설정.
 COPY ROOT.jar /ROOT.jar

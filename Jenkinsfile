@@ -85,15 +85,15 @@ pipeline {
     
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: 'privatekey',
+            git credentialsId: 'kong-sj',
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
 
             sh "sed -i 's/k8s-manifest:.*\$/k8s-manifest:${currentBuild.number}/g' deployment.yaml"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
-            sshagent (credentials: ['privatekey']) {
-                sh "git remote set-url origin https://github.com/kong-sj/manifest.git"
+            sshagent (credentials: ['git-ssh']) {
+                sh "git remote add origin git@github.com:kong-sj/manifest.git"
                 sh "git push origin main"
             }  
         }

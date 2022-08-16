@@ -94,7 +94,7 @@ pipeline {
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
             sshagent (credentials: ['git-ssh']) {
-                sh "git remote add origin git@github.com:kong-sj/manifest.git"
+                sh "git remote set-url origin git@github.com:kong-sj/manifest.git"
                 sh "git push origin main"
             }  
         }

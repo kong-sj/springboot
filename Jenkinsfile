@@ -90,12 +90,12 @@ pipeline {
                 branch: 'main'
 
             sh "sed -i 's/k8s-manifest:.*\$/k8s-manifest:${currentBuild.number}/g' deployment.yaml"
-            sh "git ls-remote -h git@github.com:kong-sj/manifest.git HEAD"
             sh "git config --global user.email 'sungjun7305@gmail.com'"
             sh "git add deployment.yaml"
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
             sshagent (credentials: ['git-ssh']) {
                 sh "git remote set-url origin git@github.com:kong-sj/manifest.git"
+                sh "git ls-remote -h git@github.com:kong-sj/manifest.git HEAD"
                 sh "git push origin main"
             }  
         }

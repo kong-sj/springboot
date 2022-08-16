@@ -95,7 +95,6 @@ pipeline {
             sh "git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'"
             sshagent (credentials: ['git-ssh']) {
                 sh "git remote set-url origin git@github.com:kong-sj/manifest.git"
-                sh "git ls-remote -h git@github.com:kong-sj/manifest.git HEAD"
                 sh "git push origin main"
             }  
         }

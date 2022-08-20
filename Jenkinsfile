@@ -13,7 +13,7 @@ pipeline {
 
     stage('Checkout Application Git Branch') {
         steps {
-            git credentialsId: 'kong-sj',
+            git credentialsId: 'java-repo',
                 url: 'https://github.com/kong-sj/springboot.git',
                 branch: 'main'
         }
@@ -85,7 +85,7 @@ pipeline {
     
     stage('K8S Manifest Update') {
         steps {
-            git credentialsId: 'kong-sj',
+            git credentialsId: 'java-repo',
                 url: 'https://github.com/kong-sj/manifest.git',
                 branch: 'main'
             sh """
@@ -94,7 +94,7 @@ pipeline {
                 git add deployment.yaml
                 git commit -m '[UPDATE] k8s-lab ${currentBuild.number} image versioning'
             """
-            sshagent (credentials: ['git-ssh']) {
+            sshagent (credentials: ['manifest-push']) {
                 sh "git remote set-url origin git@github.com:kong-sj/manifest.git"
                 sh "git push origin main"
             }  
